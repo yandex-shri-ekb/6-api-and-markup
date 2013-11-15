@@ -46,8 +46,7 @@
     text-align: center;
     float: left;
     position: relative;
-    margin-right: 20px;
-    padding: 10px 10px 0 10px;
+    margin: 0 10px 10px 0;
 }
 
 .image:hover .image__info
@@ -63,13 +62,13 @@
 
 .image__img
 {
-
+    height: 150px;
+    overflow: hidden;
 }
 
 .image__img img
 {
     display: block;
-    max-height: 100%;
 }
 
 .image__info
@@ -78,9 +77,20 @@
     top: 0;
     left: 0;
     right: 0;
+    margin: -8px -8px 0 -8px;
     padding-top: 158px;
     display: none;
     background-color: #2B2B2B;
     border: 1px solid #222;
     z-index: 1;
+}
+
+.image__title
+{
+    color: #FFF;
+}
+
+.image__author
+{
+    color: #FFF;
 }

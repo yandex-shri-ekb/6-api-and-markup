@@ -32,14 +32,14 @@
     overflow: hidden;
 }
 
-.holder: hover
+.holder:hover
 {
     border: 10px solid wheat;
     margin: -5px;
     background: wheat;
 }
 
-.holder: hover .paspartu
+.holder:hover .paspartu
 {
     display: block;
 }
@@ -65,6 +65,6 @@
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     width: 50%;
 }

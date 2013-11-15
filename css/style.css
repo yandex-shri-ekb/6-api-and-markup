@@ -1,0 +1,86 @@
+.clearfix:before, .clearfix:after
+{
+    content: "";
+    display: table;
+}
+
+.clearfix:after
+{
+    clear: both;
+}
+
+.clearfix
+{
+    *zoom: 1;
+}
+
+.pseudo-link
+{
+    border-bottom: 1px dotted;
+    color: #0d44a0;
+    cursor: pointer;
+}
+
+.pseudo-link.active
+{
+    color: #f00;
+}
+
+.pseudo-link:hover
+{
+    color: #f00;
+}
+
+.switcher
+{
+    margin: 0 0 20px;
+}
+
+.images
+{
+
+}
+
+.image
+{
+    text-align: center;
+    float: left;
+    position: relative;
+    margin-right: 20px;
+    padding: 10px 10px 0 10px;
+}
+
+.image:hover .image__info
+{
+    display: block;
+}
+
+.image:hover .image__img img
+{
+    z-index: 2;
+    position: relative;
+}
+
+.image__img
+{
+
+}
+
+.image__img img
+{
+    display: block;
+    max-height: 100%;
+}
+
+.image__info
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-top: 158px;
+    display: none;
+    background-color: #2B2B2B;
+    border: 1px solid #222;
+    z-index: 1;
+}

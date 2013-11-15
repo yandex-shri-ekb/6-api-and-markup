@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript" src="//yandex.st/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+
+    <h1>Работа с API, верстка и анимации</h1>
+
+    <div class="switcher" id="switcher">
+        <span class="pseudo-link active">Популярные</span> /
+        <span class="pseudo-link">фото дня</span> /
+        <span class="pseudo-link">Новые интересные фотографии</span>
+    </div>
+
+    <div class="images clearfix" id="images"></div>
+
+    <script id="images-template" type="text/x-handlebars-template">
+        {{#each images}}
+            <div class="image">
+                <div class="image__img">
+                    <img src="{{ img.M.href }}" alt="{{ title }}" width="{{ img.M.width }}" height="{{ img.M.height }}"/>
+                </div>
+
+                <div class="image__info">
+                    <div class="image__title">{{ title }}</div>
+                    <div class="image__author">{{ authors.0.name }}</div>
+                </div>
+            </div>
+        {{/each}}
+    </script>
+</body>
+</html>
+
+        <!--При наведении на фотографию должен показываться заголовок фотографии, информация об авторе со ссылкой
+на его страницу на сервисе Фотки, отформатированная дата публикации, а так же ссылка на оригинал.-->

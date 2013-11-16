@@ -5,17 +5,18 @@ define([
     'router'
 ], function($, _, Backbone, Router) {
 
-    return function() {
+    return {
 
-        this.router = new Router;
+        initialize : function() {
+            this.router = new Router;
+            this.vent = _.extend({}, Backbone.Events);
 
-        this.vent = _.extend({}, Backbone.Events);
-
-        var self = this;
-        $('a[href]').on('click', function(event) {
-            self.router.navigate($(this).attr('href'), { trigger : true });
-            return false;
-        });
+            var self = this;
+            $('a[href]').on('click', function(event) {
+                self.router.navigate($(this).attr('href'), { trigger : true });
+                return false;
+            });
+        }
 
     };
 

@@ -1,13 +1,17 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
 ], function($, _, Backbone) {
 
     return Backbone.Router.extend({
 
         routes : {
             '*type' : 'index'
+        },
+
+        initialize : function() {
+            Backbone.history.start();
         },
 
         index : function(type) {
@@ -23,13 +27,13 @@ define([
                 'collections/picture',
                 'views/picture/list'
             ], function(PictureCollection, PictureListView) {
-                var results = new PictureCollection({
+                var collection = new PictureCollection({
                     type : type
                 });
-                results.fetch({
+                collection.fetch({
                     dataType : 'jsonp',
                     success : function(collection) {
-                        var list = new PictureListView({
+                        new PictureListView({
                             collection : collection,
                             title : types[type]
                         });

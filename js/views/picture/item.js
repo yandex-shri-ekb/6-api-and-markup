@@ -2,9 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'app',
     'views/picture/detail',
     'text!templates/picture/item.html'
-], function($, _, Backbone, PictureDetailView, tpl) {
+], function($, _, Backbone, App, PictureDetailView, tpl) {
 
     return Backbone.View.extend({
 
@@ -15,18 +16,16 @@ define([
         template : _.template(tpl),
 
         initialize: function() {
-            // При закрытии превью убираем обводку
-            window.app.vent.on('preview:close', function() {
-                this.$el.removeClass('picture_active_yes');
-            }, this);
-
+            App.vent.on('picture:select', this.disactivate, this);
+            this.model.on('picture:select', this.showPreview, this);
+            this.model.on('preview:close', this.disactivate, this);
             this.render();
         },
 
         events : {
-            'click .picture__link' : 'showLargerPicture',
-            'mouseout .picture__preview' : 'showPictureInfo',
-            'mouseover .picture__preview' : 'showPictureInfo',
+            'mouseout  .picture__preview' : 'hover',
+            'mouseover .picture__preview' : 'hover',
+            'click     .picture__link'    : 'selectPicture'
         },
 
         render : function() {
@@ -34,7 +33,15 @@ define([
             return this;
         },
 
-        showLargerPicture : function() {
+        selectPicture : function() {
+            if (this.$el.hasClass('picture_active_yes')) {
+                return;
+            }
+            App.vent.trigger('picture:select');
+            this.model.trigger('picture:select', this);
+        },
+
+        showPreview : function() {
             var $el = this.$el,
                 $prevEl;
 
@@ -52,16 +59,27 @@ define([
                 }
             }
 
-            var view = new PictureDetailView({
+            new PictureDetailView({
                 model : this.model,
                 addBefore : $el
             });
 
-            this.$el.addClass('picture_active_yes');
+            this.activate();
         },
 
-        showPictureInfo : function(event) {
+        activate : function() {
+            this.$el.addClass('picture_active_yes');
+            return this;
+        },
+
+        disactivate : function() {
+            this.$el.removeClass('picture_active_yes');
+            return this;
+        },
+
+        hover : function() {
             this.$el.toggleClass('picture_hovered_yes');
+            return this;
         }
 
     });

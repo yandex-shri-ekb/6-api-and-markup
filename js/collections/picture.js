@@ -17,7 +17,7 @@ define([
 
         parse : function(response) {
             return response.entries;
-        }
+        },
 
     });
 

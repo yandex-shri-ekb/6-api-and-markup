@@ -2,8 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'app',
     'text!templates/picture/detail.html'
-], function($, _, Backbone, tpl) {
+], function($, _, Backbone, App, tpl) {
 
     return Backbone.View.extend({
 
@@ -14,19 +15,18 @@ define([
         template : _.template(tpl),
 
         initialize: function(options) {
-            window.app.vent.on('preview:open', this.closePreview, this);
-            window.app.vent.trigger('preview:open');
+            App.vent.on('picture:select', this.close, this);
             this.render(options.addBefore);
         },
 
         events : {
-            'click .preview__close' : 'closePreview',
+            'click  .preview__close' : 'close',
             'change .preview__sizes' : 'otherImageSize'
         },
 
         render : function(element) {
             var $el = this.$el;
-            $el.html(this.template(this.model.toJSON()));
+            $el.html(this.template(this.model.toJSON())).css('display', 'none');
 
             // Вставляем превью перед началом строки
             $(element).before($el);
@@ -39,9 +39,8 @@ define([
             return this;
         },
 
-        closePreview : function() {
-            // Генерируем событие
-            window.app.vent.trigger('preview:close');
+        close : function() {
+            this.model.trigger('preview:close');
 
             // Сворачиваем и удаляем превью
             var self = this;

@@ -14,7 +14,7 @@
         </li>
         <% if (img) { %>
             <li class="preview__prop">
-                Открыть в разрешении <i class="preview__new-window"></i>
+                Открыть в разрешении<br>
                 <select class="preview__sizes">
                 <% for (var size in img) { %>
                     <option value="<%= size %>" <% if (size === 'L') { %>selected<% } %>>
@@ -26,6 +26,7 @@
                     </option>
                 <% } %>
                 <select>
+                <i class="preview__new-window"></i>
             </li>
         <% } %>
     </ul>

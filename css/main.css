@@ -82,6 +82,11 @@ body
     cursor: pointer;
 }
 
+.picture_active_yes .picture__link
+{
+    cursor: default;
+}
+
 .picture__preview
 {
     display: block;
@@ -199,6 +204,12 @@ body
 .preview__prop
 {
     margin: 0 0 10px;
+}
+
+.preview__sizes
+{
+    width: 170px;
+    margin: 5px 0 0;
 }
 
 .preview__new-window

@@ -2,8 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'helpers/helper'
-], function($, _, Backbone, Helper) {
+    'helpers/helper',
+    'views/picture/detail'
+], function($, _, Backbone, Helper, PictureDetailView) {
 
     return Backbone.Model.extend({
 

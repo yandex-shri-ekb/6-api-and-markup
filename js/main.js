@@ -21,8 +21,6 @@ require([
     'app'
 ], function(Backbone, App) {
 
-    window.app = new App;
-
-    Backbone.history.start();
+    App.initialize();
 
 });

@@ -1,106 +1,73 @@
-/*globals Ember, moment*/
+/*globals jQuery*/
 /*jslint browser:true*/
 
-(function () {
-    'use strict';
-
-    var App = Ember.Application.create({
-        LOG_TRANSITIONS: true
-    });
-
-    App.Router = Ember.Router.extend({
-        location: 'none'
-    });
-
-    App.Router.map(function () {
-        this.resource('photos', function () {
-            this.resource('photo', { path: '/:photo_id' });
+(function ($) {
+    "use strict";
+    
+    var $preview = $('.preview'),
+        $previewImg = $preview.find('img');
+    
+    function padLeadingZero(num) {
+        return ('0' + num).slice(-2);
+    }
+    
+    function formatDate(dateString) {
+        var d = new Date(dateString),
+            lz = padLeadingZero,
+            date = [lz(d.getDate()), lz(d.getMonth()), d.getFullYear()].join('.'),
+            time = [lz(d.getHours()), lz(d.getMinutes())].join(':');
+        
+        return date + ' ' + time;
+    }
+        
+    function displayPhotos(photos) {
+        photos.forEach(function (photo) {
+            $('[data-template="image"]').render({
+                href:  photo.img.M.href,
+                title: photo.title,
+                profile: "http://fotki.yandex.ru/users/" + photo.author,
+                author: photo.author,
+                created: photo.created ? formatDate(photo.created) : '',
+                orig: photo.img.orig && photo.img.orig.href,
+                large: photo.img.XXXL.href
+            }).appendTo('.canvas');
         });
+    }
+    
+    function switchImage(direction) {
+        var $nextImg = $('[href="' + $previewImg.attr('src') + '"]').closest('.holder')[direction]();
+            
+        if ($nextImg) {
+            $previewImg.attr('src', $nextImg.find('.crop > a').attr('href'));
+        }
+    }
+    
+    $('.canvas').on('click', 'img', function () {
+        $previewImg.attr('src', $(this).parent('a').attr('href'));
+        $preview.show();
+        
+        return false;
     });
-
-    App.IndexRoute = Ember.Route.extend({
-        redirect: function () {
-            this.transitionTo('photos');
+    
+    $preview.on('click', function () {
+        $preview.hide();
+    });
+    
+    $(document).on('keydown', function (event) {
+        switch (event.keyCode) {
+        case 27: // esc
+            $preview.trigger('click');
+            break;
+        case 37: // left
+            switchImage('prev');
+            break;
+        case 39: // right
+            switchImage('next');
+            break;
         }
     });
-
-    App.PhotosRoute = Ember.Route.extend({
-        model: function () {
-            var url = "http://api-fotki.yandex.ru/api/top/?format=json&callback=?";
-
-            return Ember.$.getJSON(url).then(function (data) {
-                var photos = Ember.A();
-
-                data.entries.forEach(function (entry) {
-                    photos.pushObject(Ember.Object.create({
-                        href:  entry.img.M.href,
-                        title: entry.title,
-                        profile: "http://fotki.yandex.ru/users/" + entry.author,
-                        author: entry.author,
-                        created: entry.created,
-                        orig: entry.img.orig && entry.img.orig.href,
-                        large: entry.img.XXXL.href
-                    }));
-
-                    photos.forEach(function (photo, i) {
-                        var next = i + 1,
-                            prev = i - 1;
-
-                        if ([next] < photos.length) {
-                            photos[i].set("next", photos[[next]]);
-                        }
-                        if (prev >= 0) {
-                            photos[i].set("prev", photos[prev]);
-                        }
-                    });
-                });
-
-                return photos;
-            });
-        }
+    
+    $.getJSON('http://api-fotki.yandex.ru/api/top/?format=json&callback=?', function (data) {
+        displayPhotos(data.entries);
     });
-
-    App.PhotoView = Em.View.extend({
-        click: function () {
-            this.get('controller').send('close');
-        },
-        didInsertElement: function() {
-            return this.$().attr({ tabindex: 1 }), this.$().focus();
-        },
-        keyDown: function(event) {
-            switch (event.keyCode) {
-            case 27: // esc
-                this.get('controller').send('close');
-                break;
-            case 37: // left
-                this.get('controller').send('prev');
-                break;
-            case 39: // right
-                this.get('controller').send('next');
-                break;
-            }
-        }
-    });
-
-    App.PhotoController = Ember.ObjectController.extend({
-        actions: {
-            close: function () {
-                this.transitionToRoute('photos');
-            },
-            prev: function () {
-                if (this.get('model.prev')) {
-                    this.transitionToRoute('photo', this.get('model.prev'));  
-                } 
-            },
-            next: function () {
-                if (this.get('model.next')) {
-                    this.transitionToRoute('photo', this.get('model.next'));  
-                } 
-            },
-        }
-    });
-
-    Ember.Handlebars.helper('formatDate', function (date) {
-        return date && moment(date).format('DD.MM.YY hh:mm');
-    });
-}());
+}(jQuery));

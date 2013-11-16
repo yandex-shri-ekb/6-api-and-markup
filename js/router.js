@@ -7,7 +7,7 @@ define([
     return Backbone.Router.extend({
 
         routes : {
-            '*type'        : 'index'
+            '*type' : 'index'
         },
 
         index : function(type) {
@@ -17,9 +17,7 @@ define([
                 'podhistory' : 'Фото дня'
             };
 
-            if (type === null || types[type] === undefined) {
-                type = 'top';
-            }
+            types[type] === undefined && (type = 'top');
 
             require([
                 'collections/picture',
@@ -29,7 +27,7 @@ define([
                     type : type
                 });
                 results.fetch({
-                    dataType: 'jsonp',
+                    dataType : 'jsonp',
                     success : function(collection) {
                         var list = new PictureListView({
                             collection : collection,

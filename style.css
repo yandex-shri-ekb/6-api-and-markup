@@ -1,0 +1,69 @@
+.holder
+{
+    display: inline-block;
+    margin: 5px 5px;
+    position: relative;
+}
+
+.paspartu
+{
+    position: absolute;
+    background: wheat;
+    top: 190px;
+    left: 0;
+    width: 300px;
+    margin: -10px;
+    line-height: 30px;
+    z-index: 1;
+    display: none;
+    padding: 10px;
+    color: #777;
+}
+
+.paspartu a
+{
+    color: #333;
+}
+
+.crop
+{
+    width: 300px;
+    height: 180px;
+    overflow: hidden;
+}
+
+.holder:hover
+{
+    border: 10px solid wheat;
+    margin: -5px;
+    background: wheat;
+}
+
+.holder:hover .paspartu
+{
+    display: block;
+}
+
+.preview
+{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.preview img
+{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 50%;
+}

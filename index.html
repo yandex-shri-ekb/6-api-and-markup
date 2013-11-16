@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6-api-and-markup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script type="text/x-handlebars" id="photos">
+        <section class="canvas">
+        {{#each}}
+            <div class="holder">
+                <div class="crop">
+                    {{#link-to "photo" this}}
+                        <img {{bind-attr src=href}}>
+                    {{/link-to}}
+                </div>
+                <div class="paspartu">
+                    <a {{bind-attr href=orig}}>{{title}}</a> by <a {{bind-attr href=profile}}>{{author}}</a>
+                    <br><small>{{formatDate created}}</small>
+                </div>
+            </div>
+        {{/each}}
+        </section>
+        {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" id="photo">
+        <section class="preview">
+            <img {{bind-attr src=large}}>
+        </section>
+    </script>
+
+    <script src="//code.jquery.com/jquery-2.0.3.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+    <script src="//builds.emberjs.com/canary/ember.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

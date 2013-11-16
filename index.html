@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6-api-and-markup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="canvas"></section>
+    <section class="preview"><img></section>
+    <script type="text/x-template" data-template="image">
+        <div class="holder">
+            <div class="crop">
+                <a href="{large}"><img src="{href}"></a>
+            </div>
+            <div class="paspartu">
+                <a href="{orig}">{title}</a> by <a href="{profile}">{author}</a>
+                <br><small>{created}<small>
+            </div>
+        </div>
+    </script>
+    <script src="//yandex.st/jquery/2.0.3/jquery.js"></script>
+    <script src="jquery.render.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

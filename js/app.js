@@ -13,8 +13,8 @@ define([
 
         var self = this;
         $('a[href]').on('click', function(event) {
-            event.preventDefault();
             self.router.navigate($(this).attr('href'), { trigger : true });
+            return false;
         });
 
     };

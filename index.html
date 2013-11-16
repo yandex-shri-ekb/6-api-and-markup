@@ -6,21 +6,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section class="canvas"></section>
-    <section class="preview"><img></section>
-    <script type="text/x-template" data-template="image">
-        <div class="holder">
-            <div class="crop">
-                <a href="{large}"><img src="{href}"></a>
+    <script type="text/x-handlebars" id="photos">
+        <section class="canvas">
+        {{#each}}
+            <div class="holder">
+                <div class="crop">
+                    {{#link-to "photo" this}}
+                        <img {{bind-attr src=href}}>
+                    {{/link-to}}
+                </div>
+                <div class="paspartu">
+                    <a {{bind-attr href=orig}}>{{title}}</a> by <a {{bind-attr href=profile}}>{{author}}</a>
+                    <br><small>{{formatDate created}}</small>
+                </div>
             </div>
-            <div class="paspartu">
-                <a href="{orig}">{title}</a> by <a href="{profile}">{author}</a>
-                <br><small>{created}<small>
-            </div>
-        </div>
+        {{/each}}
+        </section>
+        {{outlet}}
     </script>
-    <script src="//yandex.st/jquery/2.0.3/jquery.js"></script>
-    <script src="jquery.render.js"></script>
+
+    <script type="text/x-handlebars" id="photo">
+        <section class="preview">
+            <img {{bind-attr src=large}}>
+        </section>
+    </script>
+
+    <script src="//code.jquery.com/jquery-2.0.3.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+    <script src="//builds.emberjs.com/canary/ember.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

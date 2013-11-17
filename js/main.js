@@ -17,9 +17,8 @@ requirejs.config({
 });
 
 require([
-    'backbone',
     'app'
-], function(Backbone, App) {
+], function(App) {
 
     App.initialize();
 

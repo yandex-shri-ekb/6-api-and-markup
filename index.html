@@ -20,9 +20,9 @@
 
     <script id="images-template" type="text/x-handlebars-template">
         {{#each images}}
-            <div class="image">
+            <div class="image" data-w="{{ img.M.width }}" data-h="{{ img.M.height }}">
                 <div class="image__img">
-                    <img src="{{ img.M.href }}" alt="{{ title }}" width="{{ img.M.width }}" height="{{ img.M.height }}"/>
+                    <img src="{{ img.M.href }}" alt="{{ title }}"/>
                 </div>
 
                 <div class="image__info">

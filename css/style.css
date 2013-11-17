@@ -43,10 +43,9 @@
 
 .image
 {
-    text-align: center;
     float: left;
     position: relative;
-    margin: 0 10px 10px 0;
+    margin: 0 0 10px 10px;
 }
 
 .image:hover .image__info
@@ -73,6 +72,7 @@
 
 .image__info
 {
+    text-align: left;
     position: absolute;
     top: 0;
     left: 0;

@@ -1,0 +1,17 @@
+<div class="detail__viewer">
+    <div class="detail__image-container">
+        <div class="detail__move detail__move_prev"></div>
+        <img class="detail__image" src="<%= images.L.href %>" alt="<%= title %>">
+        <div class="detail__move detail__move_next"></div>
+    </div>
+</div>
+<div class="detail__info">
+    <p class="detail__title"><%= title %></p>
+    <%= authorLink(author, 'twilight-link') %><span class="detail__date">, <%= date %></span>
+    <p class="detail__resolutions">
+        <% _.each(images, function(image) { %>
+            <%= imageLink(image, 'twilight-link') %>
+        <% }) %>
+    </p>
+</div>
+<div class="detail__close"></div>

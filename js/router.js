@@ -33,6 +33,7 @@ define([
                 collection.fetch({
                     dataType : 'jsonp',
                     success : function(collection) {
+                        $('.tabs').show();
                         new PictureListView({
                             collection : collection,
                             title : types[type]

@@ -1,14 +1,35 @@
+html,
 body
 {
-    margin: 0 40px;
+    height: 100%;
+}
+
+body
+{
+    margin: 0;
 
     font: 14px/normal sans-serif;
 }
 
 
+#content
+{
+    height: 100%;
+    margin: 50px 40px -50px;
+
+    text-align: center;
+}
+
+
 .tabs
 {
-    margin: 10px 0 20px;
+    position: absolute;
+    top: 15px;
+    left: 0;
+
+    display: none;
+
+    margin: 0 40px;
     padding: 0;
 
     list-style: none;
@@ -26,6 +47,8 @@ body
 {
     margin: 0 0 20px;
 
+    text-align: left;
+
     font-size: 40px;
     font-weight: 400;
 }
@@ -37,7 +60,7 @@ body
 
 .pictures__items
 {
-    margin: -10px -10px 100px;
+    margin: -10px -10px 0;
     padding: 0;
 
     list-style: none;
@@ -276,4 +299,82 @@ body
 .preview__prev
 {
     left: 0;
+}
+
+
+.loader-helper
+{
+    display: inline-block;
+
+    height: 100%;
+
+    content: "";
+    vertical-align: middle;
+}
+
+
+.loader
+{
+    display: inline-block;
+
+    margin: -100px 0 0;
+
+    vertical-align: middle;
+}
+
+.loader__circle
+{
+    display: block;
+
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+
+    -webkit-animation: spin 1s linear infinite;
+       -moz-animation: spin 1s linear infinite;
+        -ms-animation: spin 1s linear infinite;
+         -o-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+
+    border: 20px solid #aaa;
+    border-right-color: transparent;
+    border-radius: 50%;
+    box-shadow: 0 0 25px 2px #eee;
+}
+
+.loader__text
+{
+    text-align: center;
+
+    color: #333;
+}
+
+@-webkit-keyframes spin
+{
+    from { -webkit-transform: rotate(0deg);   }
+    to   { -webkit-transform: rotate(360deg); }
+}
+
+@-moz-keyframes spin
+{
+    from { -moz-transform: rotate(0deg);   }
+    to   { -moz-transform: rotate(360deg); }
+}
+
+@-ms-keyframes spin
+{
+    from { -ms-transform: rotate(0deg);   }
+    to   { -ms-transform: rotate(360deg); }
+}
+
+@-o-keyframes spin
+{
+    from { -o-transform: rotate(0deg);   }
+    to   { -o-transform: rotate(360deg); }
+}
+
+@keyframes spin
+{
+    from { transform: rotate(0deg);   }
+    to   { transform: rotate(360deg); }
 }

@@ -15,7 +15,9 @@ define([
         template : _.template(tpl),
 
         initialize: function(options) {
+            _.bindAll(this, 'keyPress');
             App.vent.on('picture:select', this.close, this);
+            $(document).on('keydown', this.keyPress);
             this.render(options.addBefore);
         },
 
@@ -42,11 +44,20 @@ define([
         close : function() {
             this.model.trigger('preview:close');
 
+            // Удаляем обработчик
+            $(document).off('keydown', this.keyPress);
+
             // Сворачиваем и удаляем превью
             var self = this;
             this.$el.slideUp('fast', function() {
                 self.remove();
             });
+        },
+
+        keyPress : function(e) {
+            if (e.which === 27) {
+                this.close();
+            }
         },
 
         otherImageSize : function(event) {

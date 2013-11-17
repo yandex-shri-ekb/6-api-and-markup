@@ -18,11 +18,15 @@ define([
             _.bindAll(this, 'keyPress');
             App.vent.on('picture:select', this.close, this);
             $(document).on('keydown', this.keyPress);
+            this.on('picture:prev', this.showPrev, this);
+            this.on('picture:next', this.showNext, this);
             this.render(options.addBefore);
         },
 
         events : {
             'click  .preview__close' : 'close',
+            'click  .preview__next'  : 'showNext',
+            'click  .preview__prev'  : 'showPrev',
             'change .preview__sizes' : 'otherImageSize'
         },
 
@@ -55,9 +59,33 @@ define([
         },
 
         keyPress : function(e) {
-            if (e.which === 27) {
-                this.close();
+            switch(e.which) {
+                case 27: // esc
+                    this.close();
+                    break;
+                case 37: // left
+                    this.trigger('picture:prev');
+                    break;
+                case 39: // right
+                    this.trigger('picture:next');
+                    break;
             }
+        },
+
+        showNext : function() {
+            var model = this.model.next();
+            if (model === null)
+                return;
+            App.vent.trigger('picture:select');
+            model.trigger('picture:select', this);
+        },
+
+        showPrev : function() {
+            var model = this.model.prev();
+            if (model === null)
+                return;
+            App.vent.trigger('picture:select');
+            model.trigger('picture:select', this);
         },
 
         otherImageSize : function(event) {

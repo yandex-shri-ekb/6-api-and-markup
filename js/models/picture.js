@@ -8,6 +8,10 @@ define([
 
     return Backbone.Model.extend({
 
+        initialize: function(attributes, options) {
+            this.collection = options.collection;
+        },
+
         parse : function(response, options) {
             return {
                 id : response.id,
@@ -19,6 +23,18 @@ define([
                 pubDate : Helper.formatDate(response.published),
                 img : response.img
             };
+        },
+
+        index : function() {
+            return this.collection.indexOf(this);
+        },
+
+        next : function() {
+            return this.collection.at(this.index() + 1) || null;
+        },
+
+        prev : function() {
+            return this.collection.at(this.index() - 1) || null;
         },
 
     });

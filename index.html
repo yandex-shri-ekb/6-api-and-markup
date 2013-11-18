@@ -18,22 +18,25 @@
 
     <div class="images clearfix" id="images"></div>
 
-    <script id="images-template" type="text/x-handlebars-template">
-        {{#each images}}
-            <div class="image" data-w="{{ img.M.width }}" data-h="{{ img.M.height }}">
-                <div class="image__img">
-                    <img src="{{ img.M.href }}" alt="{{ title }}"/>
-                </div>
-
-                <div class="image__info">
-                    <div class="image__title">{{ title }}</div>
-                    <div class="image__author">{{ authors.0.name }}</div>
-                </div>
+    <script id="image-template" type="text/x-handlebars-template">
+        <div class="image" data-w="{{ image.img.M.width }}" data-h="{{ image.img.M.height }}">
+            <div class="image__img">
+                <img src="{{ image.img.M.href }}" alt="{{ image.title }}"/>
             </div>
-        {{/each}}
+
+            <div class="image__info">
+                <div class="image__title">{{ image.title }}</div>
+                <div class="image__author">{{ image.authors.0.name }}</div>
+            </div>
+        </div>
     </script>
+
+    <div id="preview" class="preview">
+        <div class="preview__arrow preview__arrow_prev">&larr;</div>
+        <div class="preview__arrow preview__arrow_next">&rarr;</div>
+        <div class="preview__img">
+            <img src="" alt=""/>
+        </div>
+    </div>
 </body>
 </html>
-
-        <!--При наведении на фотографию должен показываться заголовок фотографии, информация об авторе со ссылкой
-на его страницу на сервисе Фотки, отформатированная дата публикации, а так же ссылка на оригинал.-->

@@ -1,6 +1,6 @@
 'use strict';
 
-require([], function(App, $) {
+require([], function() {
     if (!String.prototype.format) {
         /**
          * "{0} is dead, but {1} is alive! {0} {2}".format("ASP", "ASP.NET")

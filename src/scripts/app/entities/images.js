@@ -8,11 +8,14 @@ define(function (require) {
 
     var ImageModel = Backbone.Model.extend({
         parse: function (response) {
+            var images = Obj.filter(response.img, function(val, key) {
+                return key.indexOf('S') === -1;
+            });
+            images.orig || (images.orig = images.L);
+
             return {
                 title: response.title,
-                images: Obj.filter(response.img, function(val, key) {
-                    return key.indexOf('S') === -1;
-                }),
+                images: images,
                 date: Dates.formatDate(response.published),
                 author: {
                     name: response.author,

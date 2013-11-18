@@ -99,28 +99,27 @@
 }
 
 .detail__close::before,
-.detail__close::after
-{
+.detail__close::after {
     position: absolute;
     top: 50%;
     width: 100%;
     height: 1px;
     background: #666;
     content: '';
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
 }
 
 .detail__close::after
 {
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+         -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
 }
 
 .detail__close:hover::before,

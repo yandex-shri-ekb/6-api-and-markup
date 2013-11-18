@@ -7,10 +7,11 @@ define(function (require) {
         template: _.template(require('text!../templates/navigation_template.html')),
         className: 'navigation',
         ui: {
+            spinner: '.navigation__spinner',
             item: '.navigation__item',
             top: '#top',
             recent: '#recent',
-            podhistory: '#podhistory'
+            podhistory: '#podhistory',
         },
         events: {
             'click .navigation__item': 'clickItem'
@@ -18,6 +19,7 @@ define(function (require) {
         active: function (id) {
             this.ui.item.removeClass('navigation__item_active');
             this.ui[id].addClass('navigation__item_active');
+            this.ui.spinner.hide();
         }
     });
 

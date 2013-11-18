@@ -1,0 +1,41 @@
+.hotkeys
+{
+    position: relative;
+}
+
+.hotkeys__link
+{
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.hotkeys__link:focus
+{
+    outline: none;
+}
+
+.hotkeys__combinations
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 4;
+    display: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    white-space: nowrap;
+}
+
+.hotkeys__combination
+{
+    margin: 0;
+    padding: 5px 0;
+    color: #888;
+    font-size: 12px;
+}
+
+.hotkeys__link:focus ~ .hotkeys__combinations
+{
+    display: block;
+}

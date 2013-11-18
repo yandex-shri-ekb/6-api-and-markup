@@ -17,28 +17,20 @@ define(function (require) {
     var $activeImage;
 
     imagesView.on('itemview:thumbnail:click', function (childView) {
-        $activeImage && $activeImage.removeClass('image_expanded');
         detailView.close();
-        if($activeImage == childView.$el) {
-            return $activeImage = undefined;
-        }
-        $activeImage = childView.$el.append(detailView.render(childView.model).$el);
+        $activeImage && $activeImage.removeClass('image_expanded');
+        $activeImage = ($activeImage == childView.$el)
+            ? undefined
+            : childView.$el.append(detailView.render(childView.model).$el);
     });
 
-    detailView.on('prev:click', function(model) {
-        imagesView.move(model, 'prev');
-    });
-
-    detailView.on('next:click', function(model) {
-        imagesView.move(model, 'next');
-    });
-
-    detailView.on('close:click', function(model) {
-        imagesView.active(model);
-    });
+    detailView.on('prev:click', imagesView.move);
+    detailView.on('next:click', imagesView.move);
+    detailView.on('close:click', imagesView.active);
 
     return {
         show: function (type) {
+            navigationView.ui.spinner.show();
             imagesCollection.fetchBy(type).then(function () {
                 Bus.trigger('app:show:mainRegion', imagesView);
                 navigationView.active(type);

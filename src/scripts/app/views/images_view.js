@@ -14,11 +14,7 @@ define(function (require) {
         events: {
             'click .image__thumbnail': 'clickThumbnail'
         },
-        templateHelpers: _.extend({
-            getOrig: function () {
-                return this.images.orig ? this.images.orig : this.images.L;
-            }
-        }, TemplateHelpers),
+        templateHelpers: TemplateHelpers,
         clickThumbnail: function () {
             this.$el.toggleClass('image_expanded');
             this.trigger('thumbnail:click');
@@ -27,6 +23,9 @@ define(function (require) {
 
     var ImageCollectionView = Marionette.CollectionView.extend({
         itemView: ImageItemView,
+        initialize: function () {
+            _.bindAll(this, 'move', 'active');
+        },
         move: function (model, direction) {
             this.active(Iterator[direction](this.collection, model));
         },

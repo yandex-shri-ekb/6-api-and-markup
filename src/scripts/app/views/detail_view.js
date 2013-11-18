@@ -2,7 +2,8 @@ define(function (require) {
     'use strict';
 
     var Marionette = require('marionette'),
-        TemplateHelpers = require('app/utils/template_helpers');
+        TemplateHelpers = require('app/utils/template_helpers'),
+        Invork = require('app/utils/invork');
 
     var DetailItemView = Marionette.ItemView.extend({
         template: _.template(require('text!../templates/detail_template.html')),
@@ -13,24 +14,15 @@ define(function (require) {
             close: '.detail__close'
         },
         initialize: function() {
-            var self = this;
-            $(document).keydown(function(ev) {
-                ev.which == 39 && ev.ctrlKey && self.trigger('next:click', self.model);
-                ev.which == 37 && ev.ctrlKey && self.trigger('prev:click', self.model);
-                ev.which == 27 && self.trigger('close:click', self.model);
-            });
+            $(document).keydown(_.bind(this.keyHandler, this));
+        },
+        keyHandler: function(ev) {
+            ev.which == 39 && ev.ctrlKey && this.trigger('next:click', this.model, 'next');
+            ev.which == 37 && ev.ctrlKey && this.trigger('prev:click', this.model, 'prev');
+            ev.which == 27 && this.trigger('close:click', this.model);
         },
         onRender: function() {
-            var self = this;
-            self.ui.next.on('click', function () {
-                self.trigger('next:click', self.model);
-            });
-            self.ui.prev.on('click', function () {
-                self.trigger('prev:click', self.model);
-            });
-            self.ui.close.on('click', function () {
-                self.trigger('close:click', self.model);
-            });
+            Invork.triggers(['next', 'prev', 'close'], 'click', this);
         },
         render: function(model) {
             this.model = model;

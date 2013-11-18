@@ -33,7 +33,7 @@ define([
                 collection.fetch({
                     dataType : 'jsonp',
                     success : function(collection) {
-                        $('.tabs').show();
+                        $('.menu').show();
                         new PictureListView({
                             collection : collection,
                             title : types[type]
@@ -41,7 +41,7 @@ define([
                     }
                 });
             });
-        },
+        }
 
     });
 

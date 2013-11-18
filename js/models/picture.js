@@ -35,7 +35,7 @@ define([
 
         prev : function() {
             return this.collection.at(this.index() - 1) || null;
-        },
+        }
 
     });
 

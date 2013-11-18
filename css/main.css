@@ -21,7 +21,7 @@ body
 }
 
 
-.tabs
+.menu
 {
     position: absolute;
     top: 15px;
@@ -35,7 +35,7 @@ body
     list-style: none;
 }
 
-.tabs__tab
+.menu__item
 {
     display: inline;
 
@@ -169,7 +169,7 @@ body
 
     background: #2b2b2b;
 
-    font: 14px/normal sans-serif;
+    font: 14px/1.2 sans-serif;
 }
 
 .preview__close

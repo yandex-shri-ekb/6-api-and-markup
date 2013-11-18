@@ -8,7 +8,7 @@ define([
     return {
 
         initialize : function() {
-            this.router = new Router;
+            this.router = new Router();
             this.vent = _.extend({}, Backbone.Events);
 
             var self = this;

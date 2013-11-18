@@ -26,7 +26,7 @@ define([
         addOne : function(picture) {
             var view = new PictureItemView({ model : picture });
             this.$('.pictures__items').append('\n').append(view.render().el);
-        },
+        }
 
     });
 

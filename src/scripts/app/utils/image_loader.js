@@ -9,7 +9,7 @@ define(function (require) {
             image.src = src;
             image.className = className;
 
-            function unbind() {
+            function unbind () {
                 image.onload = image.onerror = image.onabort = null;
             }
 

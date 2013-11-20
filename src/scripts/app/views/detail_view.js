@@ -15,28 +15,28 @@ define(function (require) {
             close: '.detail__close',
             spinner: '.detail__spinner'
         },
-        initialize: function() {
+        initialize: function () {
             _.bindAll(this, 'keyHandler', 'renderImage', 'showError');
             $(document).keydown(this.keyHandler);
         },
-        keyHandler: function(ev) {
+        keyHandler: function (ev) {
             ev.which == 39 && ev.ctrlKey && this.trigger('next:click', this.model, 'next');
             ev.which == 37 && ev.ctrlKey && this.trigger('prev:click', this.model, 'prev');
             ev.which == 27 && this.trigger('close:click', this.model);
         },
-        renderImage: function(image) {
+        renderImage: function (image) {
             this.ui.spinner.replaceWith(image);
         },
-        showError: function() {
+        showError: function () {
             this.ui.spinner.replaceWith('Ошибка :-(');
         },
-        onRender: function() {
+        onRender: function () {
             Invork.triggers(['next', 'prev', 'close'], 'click', this);
             ImageLoader
                 .get(this.model.get('images').L.href, 'detail__image')
                 .then(this.renderImage, this.showError);
         },
-        render: function(model) {
+        render: function (model) {
             this.model = model;
             return Marionette.ItemView.prototype.render.call(this);
         },

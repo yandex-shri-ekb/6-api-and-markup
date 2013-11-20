@@ -20,6 +20,12 @@
             animation: spin 1.5s linear infinite;
 }
 
+.spinner_inverted,
+.spinner_inverted .spinner__ring
+{
+    border-right-color: #ccc;
+}
+
 .spinner__ring_1
 {
     margin: 5px;

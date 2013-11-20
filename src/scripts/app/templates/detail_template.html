@@ -1,7 +1,13 @@
 <div class="detail__viewer">
     <div class="detail__image-container">
         <div class="detail__move detail__move_prev"></div>
-        <img class="detail__image" src="<%= images.L.href %>" alt="<%= title %>">
+        <div class="detail__spinner" style="width: <%= images.L.width %>px">
+            <div class="spinner spinner_inverted">
+                <div class="spinner__ring spinner__ring_1">
+                    <div class="spinner__ring spinner__ring_2"></div>
+                </div>
+            </div>
+        </div>
         <div class="detail__move detail__move_next"></div>
     </div>
 </div>

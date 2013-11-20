@@ -98,8 +98,8 @@
     cursor: pointer;
 }
 
-.detail__close::before,
-.detail__close::after {
+.detail__close:before,
+.detail__close:after {
     position: absolute;
     top: 50%;
     width: 100%;
@@ -113,7 +113,7 @@
             transform: rotate(45deg);
 }
 
-.detail__close::after
+.detail__close:after
 {
     -webkit-transform: rotate(-45deg);
        -moz-transform: rotate(-45deg);
@@ -122,8 +122,14 @@
             transform: rotate(-45deg);
 }
 
-.detail__close:hover::before,
-.detail__close:hover::after
+.detail__close:hover:before,
+.detail__close:hover:after
 {
     background: #4d4d4d;
+}
+
+.detail__spinner
+{
+    vertical-align: middle;
+    display: table-cell;
 }

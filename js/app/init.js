@@ -5,6 +5,6 @@ require(['app/app', 'jquery'], function(App, $) {
 
     $(function() {
         app.init();
-        app.loadImages('top', 1);
+        app.start('top');
     });
 });

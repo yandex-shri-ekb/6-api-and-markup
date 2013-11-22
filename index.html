@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Яндекс.Картинки</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="load">
+    <div class="header">
+
+        <div class="logo">
+            <a href="//www.yandex.ru" title="На главную страницу Яндекса">
+                <img src="img/logo.png" alt="yandex" width="95" height="37">
+             </a>
+            <a class="subtitle" href="//images.yandex.ru/">картинки</a>
+        </div>
+
+        <div class="nav-search-wrapper">
+            <ul class="navigation">
+                <li><a class="link" href="#">Поиск</a></li>
+                <li><a class="link" href="#">Почта</a></li>
+                <li><a class="link" href="#">Карты</a></li>
+                <li><a class="link" href="#">Маркет</a></li>
+                <li><a class="link" href="#">Новости</a></li>
+                <li><a class="link" href="#">Словари</a></li>
+                <li><a class="link" href="#">Блоги</a></li>
+                <li><a class="link" href="#">Видео</a></li>
+                <li class="active">Картинки</li>
+                <li class="more"><a class="link" href="#">ещё</a></li>
+            </ul>
+
+            <div class="search-wrapper">
+                <form>
+                    <input type="text" id="query" disabled="disabled" />
+                    <a href="#"><i id="by-picture"></i></a>
+                    <input id="search" type="submit" value="Найти" disabled="disabled" />
+                </form>
+                <div class="search-additional">
+                    <span>Поищите также:</span>
+                        <span class="pages"></span>
+                </div>
+                <i class="search-wrapper-arrow"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout-wrapper">
+        <div class="filters">
+            <div class="filter-wrapper">
+                <h3>Размер</h3>
+                <ul class="filter-list">
+                    <li><a href="#">Большой</a></li>
+                    <li><a href="#">Средний</a></li>
+                    <li><a href="#">Маленький</a></li>
+                    <li><a href="#">Свой размер</a></li>
+                    <li><a href="#">Обои</a></li>
+                </ul>
+            </div>
+            <div class="filter-wrapper">
+                <h3>Ориентация</h3>
+                <ul class="filter-list">
+                    <li><a href="#">Горизонтальная</a></li>
+                    <li><a href="#">Вертикальная</a></li>
+                    <li><a href="#">Квадратная</a></li>
+                </ul>
+            </div>
+            <div class="filter-wrapper">
+                <h3>Тип</h3>
+                <ul class="filter-list">
+                    <li><a href="#">Фото</a></li>
+                    <li><a href="#">Клипарт</a></li>
+                    <li><a href="#">Рисунки и чертежи</a></li>
+                    <li><a href="#">Лица</a></li>
+                    <li><a href="#">Демотиваторы</a></li>
+                </ul>
+            </div>
+            <div class="filter-wrapper">
+                <h3>Цвет</h3>
+                <ul class="filter-list">
+                    <li><a href="#">Только цветные</a></li>
+                    <li><a href="#">Чёрно-белые</a></li>
+                </ul>
+            </div>
+            <div class="filter-wrapper">
+                <h3>Файл</h3>
+                <ul class="filter-list">
+                    <li><a href="#">JPEG</a></li>
+                    <li><a href="#">PNG</a></li>
+                    <li><a href="#">GIF</a></li>
+                </ul>
+            </div>
+            <div class="filter-wrapper">
+                <ul class="filter-list">
+                    <li><a href="#">Свежие картинки</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="overlay"></div>
+            <div class="content"></div>
+        </div>
+
+        <div class="preloader"></div>
+    </div>
+
+    <div class="img-preview-template" id="img-preview">
+        <div class="slideshow">
+            <div class="arrow-wrapper left">
+                <i class="arrow left-arrow" title="Предыдущее изображение" data-direct="left"></i>
+            </div>
+            <div class="slide-image"></div>
+            <div class="arrow-wrapper right">
+                <i class="arrow right-arrow" title="Cледующее изображение" data-direct="right"></i>
+            </div>
+        </div>
+
+        <div class="info">
+            <h1 class="img-title"></h1>
+            <ul class="resolutions"></ul>
+            <div class="author-wrapper"></div>
+        </div>
+
+        <button class="close">☓</button>
+    </div>
+
+    <!--    Костыль нужен для того, чтобы при скролле к предпросмотру страница визуально не прыгала вверх.
+        Это сложно объяснить. Попробуйте удалить его и пощелкать картинки ближе к концу страницы.
+
+        Что с этим делать - пока у меня идей нет -->
+    <div style="height: 1000px; clear: both;"></div>
+
+    <script src="js/libs/jquery-2.0.3.min.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/images.js"></script>
+    <script src="js/preview.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

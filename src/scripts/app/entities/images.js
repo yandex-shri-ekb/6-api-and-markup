@@ -2,32 +2,14 @@ define(function (require) {
     'use strict';
 
     var Backbone = require('backbone'),
-        Url = require('app/utils/url'),
-        Dates = require('app/utils/dates'),
-        Obj = require('app/utils/obj');
-
-    var ImageModel = Backbone.Model.extend({
-        parse: function (response) {
-            var images = Obj.filter(response.img, function(val, key) {
-                return key.indexOf('S') === -1;
-            });
-            images.orig || (images.orig = images.L);
-
-            return {
-                title: response.title,
-                images: images,
-                date: Dates.formatDate(response.published),
-                author: {
-                    name: response.author,
-                    href: Url.author(response.author)
-                }
-            };
-        }
-    });
+        ImageModel = require('./image'),
+        Url = require('app/utils/url');
 
     var ImagesCollection = Backbone.Collection.extend({
         model: ImageModel,
-        parse : function (response) {
+        parse: function (response) {
+            this.next = response.links.next;
+            this.trigger(response.links.next ? 'incomplete' : 'complete');
             return response.entries;
         },
         fetchBy: function (type) {
@@ -35,14 +17,19 @@ define(function (require) {
                 url: Url.images(type),
                 dataType: 'jsonp',
                 data: {
-                    format: 'json'
+                    format: 'json',
+                    limit: 20
                 }
+            });
+        },
+        more: function () {
+            return this.fetch({
+                url: this.next,
+                dataType: 'jsonp',
+                remove: false
             });
         }
     });
 
-    return {
-        model: ImageModel,
-        collection: ImagesCollection
-    };
+    return ImagesCollection;
 });

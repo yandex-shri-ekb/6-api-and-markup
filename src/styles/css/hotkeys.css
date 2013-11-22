@@ -39,3 +39,10 @@
 {
     display: block;
 }
+
+.hotkeys__key
+{
+    padding: 4px 8px;
+    background: #fff0be;
+    color: #666;
+}

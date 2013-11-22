@@ -15,14 +15,16 @@ define(function (require) {
             close: '.detail__close',
             spinner: '.detail__spinner'
         },
+        templateHelpers: TemplateHelpers,
+
         initialize: function () {
             _.bindAll(this, 'keyHandler', 'renderImage', 'showError');
             $(document).keydown(this.keyHandler);
         },
         keyHandler: function (ev) {
-            ev.which == 39 && ev.ctrlKey && this.trigger('next:click', this.model, 'next');
-            ev.which == 37 && ev.ctrlKey && this.trigger('prev:click', this.model, 'prev');
-            ev.which == 27 && this.trigger('close:click', this.model);
+            ev.which === 39 && this.trigger('next:click', this.model, 'next');
+            ev.which === 37 && this.trigger('prev:click', this.model, 'prev');
+            ev.which === 27 && this.trigger('close:click', this.model);
         },
         renderImage: function (image) {
             this.ui.spinner.replaceWith(image);
@@ -39,8 +41,7 @@ define(function (require) {
         render: function (model) {
             this.model = model;
             return Marionette.ItemView.prototype.render.call(this);
-        },
-        templateHelpers: TemplateHelpers
+        }
     });
 
     return DetailItemView;

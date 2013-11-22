@@ -7,7 +7,7 @@ define(function (require) {
         NavigationView = require('app/views/navigation_view'),
         Images = require('app/entities/images');
 
-    var imagesCollection = new Images.collection(),
+    var imagesCollection = new Images(),
         navigationView = new NavigationView(),
         detailView = new DetailView(),
         imagesView = new ImagesView({
@@ -32,12 +32,12 @@ define(function (require) {
         show: function (type) {
             navigationView.ui.spinner.show();
             imagesCollection.fetchBy(type).then(function () {
-                Bus.trigger('app:show:mainRegion', imagesView);
                 navigationView.active(type);
             });
         },
         start: function () {
             Bus.trigger('app:show:navigationRegion', navigationView);
+            Bus.trigger('app:show:mainRegion', imagesView);
         },
         redirect: function () {
             Backbone.history.navigate('#/show/top');

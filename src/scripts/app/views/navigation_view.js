@@ -16,6 +16,7 @@ define(function (require) {
         events: {
             'click .navigation__item': 'clickItem'
         },
+        
         active: function (id) {
             this.ui.item.removeClass('navigation__item_active');
             this.ui[id].addClass('navigation__item_active');

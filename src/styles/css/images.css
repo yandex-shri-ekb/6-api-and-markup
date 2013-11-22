@@ -1,0 +1,46 @@
+.images__controls
+{
+    margin: 50px 0 25px;
+    height: 50px;
+    text-align: center;
+}
+
+.images__button-more
+{
+    position: relative;
+    padding: 12px;
+    border: 0;
+    background: #ed4e6e;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.images__button-more:focus
+{
+    outline: none;
+}
+
+.images__button-more:hover
+{
+    background: #ff6282;
+}
+
+.images__button-more:active
+{
+    top: 2px;
+    background: #ed4e6e;
+}
+
+.images__info
+{
+    color: #999;
+}
+
+.images__info,
+.images__button-more,
+.images__spinner
+{
+    display: none;
+}

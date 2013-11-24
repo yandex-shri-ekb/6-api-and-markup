@@ -1,0 +1,32 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    font: 100 16px/1.4 Verdana, Geneva, sans-serif;
+}
+
+.twilight-link
+{
+    border-bottom: 1px solid #666;
+    color: #aaa;
+    text-decoration: none;
+}
+
+.twilight-link:hover
+{
+    border-color: #ed4e6e;
+    color: #ed4e6e;
+}
+
+.page-action-link
+{
+    border-bottom: 1px dashed #555;
+    color: #555;
+    text-decoration: none;
+}
+
+.page-action-link:hover
+{
+    border-color: #222;
+    color: #222;
+}

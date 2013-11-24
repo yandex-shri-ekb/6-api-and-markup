@@ -1,0 +1,13 @@
+<div class="image__info">
+    <div class="image__info-container">
+        <div class="image__info-block">
+            <span class="image__title"><%= title %></span>
+            — <%= authorLink(author, 'image__author twilight-link') %>
+        </div>
+        <%= imageLink(images.orig, 'twilight-link') %>
+    </div>
+</div>
+<img class="image__thumbnail" src="<%= images.M.href %>" alt="<%= title %>">
+<div class="image__pointer">
+    <div class="image__pointer-sign"></div>
+</div>

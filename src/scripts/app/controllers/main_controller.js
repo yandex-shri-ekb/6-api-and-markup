@@ -19,7 +19,7 @@ define(function (require) {
     imagesView.on('itemview:thumbnail:click', function (childView) {
         detailView.close();
         $activeImage && $activeImage.removeClass('image_expanded');
-        $activeImage = ($activeImage == childView.$el)
+        $activeImage = ($activeImage === childView.$el)
             ? undefined
             : childView.$el.append(detailView.render(childView.model).$el);
     });
@@ -33,6 +33,7 @@ define(function (require) {
             navigationView.ui.spinner.show();
             imagesCollection.fetchBy(type).then(function () {
                 navigationView.active(type);
+                detailView.model = null;
             });
         },
         start: function () {

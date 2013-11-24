@@ -1,30 +1,32 @@
 define(function (require) {
     'use strict';
 
+    var image;
+
+    var unbind = function () {
+        image && (image.onload = image.onerror = image.onabort = $.noop);
+    };
+
+    var getHandler = function (handler) {
+        return function () {
+            unbind();
+            handler(image);
+        };
+    };
+
     return {
-        get: function (src, className) {
-            var image = new Image(),
-                d = $.Deferred();
+        get: function (options) {
+            var d = $.Deferred();
 
-            image.src = src;
-            image.className = className;
+            unbind();
 
-            function unbind () {
-                image.onload = image.onerror = image.onabort = null;
-            }
+            image = $('<img>', options).get(0);
 
             if (image.complete) {
                 d.resolve(image);
             } else {
-                image.onload = function () {
-                    unbind();
-                    d.resolve(image);
-                };
-
-                image.onerror = image.onabort = function () {
-                    unbind();
-                    d.reject(src);
-                };
+                image.onload = getHandler(d.resolve);
+                image.onerror = image.onabort = getHandler(d.reject);
             }
 
             return d.promise();

@@ -28,8 +28,8 @@ define(function (require) {
             $(document).keydown(this.keyHandler);
         },
         keyHandler: function (ev) {
-            ev.which == 40 && ev.ctrlKey && this.more();
-            ev.which == 38 && ev.ctrlKey && $(document.body).animate({
+            ev.which === 40 && ev.ctrlKey && this.more();
+            ev.which === 38 && ev.ctrlKey && $(document.body).animate({
                 scrollTop: 0
             }, 200);
         },
@@ -49,13 +49,12 @@ define(function (require) {
         },
         active: function (model) {
             var view = model ? this.children.findByModel(model) : this.children.first();
-            view || (view = this.children.first());
             view.ui.thumbnail.trigger('click');
         },
         more: function () {
             if (this.ui.buttonMore.is(':visible')) {
                 this.ui.buttonMore.hide();
-                this.ui.spinner.show();
+                this.ui.spinner.css({ display: 'inline-block' });
                 this.collection.more();
             }
         }

@@ -16,6 +16,7 @@ define(function (require) {
             return this.fetch({
                 url: Url.images(type),
                 dataType: 'jsonp',
+                reset: true,
                 data: {
                     format: 'json',
                     limit: 20

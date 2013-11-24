@@ -35,7 +35,10 @@ define(function (require) {
         onRender: function () {
             Invork.triggers(['next', 'prev', 'close'], 'click', this);
             ImageLoader
-                .get(this.model.get('images').L.href, 'detail__image')
+                .get({
+                    src: this.model.get('images').L.href,
+                    class: 'detail__image'
+                })
                 .then(this.renderImage, this.showError);
         },
         render: function (model) {

@@ -27,26 +27,38 @@ define(['jquery', 'handlebars', 'app/image_preloader'], function($, Handlebars, 
         });
 
         // prev
-        app.$preview.on('click', '.preview__arrow_prev', function() {
-            var $image = app.$selectedImage.prevAll('.image').eq(0);
-
-            selectImage(app, $image);
-        });
+        app.$preview.on('click', '.preview__arrow_prev', $.proxy(previewPrev, app));
 
         // next
-        app.$preview.on('click', '.preview__arrow_next', function() {
-            var $image = app.$selectedImage.nextAll('.image').eq(0);
+        app.$preview.on('click', '.preview__arrow_next', $.proxy(previewNext, app));
 
-            selectImage(app, $image);
+        // close
+        app.$previewClose.on('click', $.proxy(previewClose, app));
+
+        app.$body.keyup(function( event ) {
+            if(app.$selectedImage === null) {
+                return;
+            }
+
+            switch(event.which) {
+                case 39: // right arrow
+                    $.proxy(previewNext, app)();
+                    event.preventDefault();
+                    break;
+                case 37: // left arrow
+                    $.proxy(previewPrev, app)();
+                    event.preventDefault();
+                    break;
+                case 27: // esc
+                    $.proxy(previewClose, app)();
+                    event.preventDefault();
+                    break;
+            }
         });
 
         // show more
         app.$more.on('click', function() {
             app.loadMore();
-        });
-
-        app.$previewClose.on('click', function() {
-            app.$preview.hide();
         });
 
         // window resize
@@ -88,8 +100,7 @@ define(['jquery', 'handlebars', 'app/image_preloader'], function($, Handlebars, 
     }
 
     /**
-     * TODO
-     * находить самое высокое изображение в строке и делать превью такого размера и не менять потом
+     * TODO находить самое высокое изображение в строке и делать превью такого размера и не менять потом
      *
      * @param {App} app
      * @param {jQuery} $image
@@ -100,6 +111,11 @@ define(['jquery', 'handlebars', 'app/image_preloader'], function($, Handlebars, 
             return;
         }
 
+        if(app.$selectedImage !== null) {
+            app.$selectedImage.removeClass('image_selected');
+        }
+
+        $image.addClass('image_selected');
         app.$selectedImage = $image;
 
         var $absFirstImage = app.$imageContainer.find('.image:first'),
@@ -110,8 +126,8 @@ define(['jquery', 'handlebars', 'app/image_preloader'], function($, Handlebars, 
         console.assert($firstImage.length !== 0);
 
         // проверка на первое и последнее изображение
-        $absFirstImage.get(0) == $image.get(0) ? app.$previewPrev.hide() : app.$previewPrev.show();
-        $absLastImage.get(0) == $image.get(0) ? app.$previewNext.hide() : app.$previewNext.show();
+        $absFirstImage.get(0) == $image.get(0) ? app.$previewPrev.addClass('preview__arrow_disabled') : app.$previewPrev.removeClass('preview__arrow_disabled');
+        $absLastImage.get(0) == $image.get(0) ? app.$previewNext.addClass('preview__arrow_disabled') : app.$previewNext.removeClass('preview__arrow_disabled');
 
         // перед первым изображением в строке
         $firstImage.before(app.$preview);
@@ -130,6 +146,44 @@ define(['jquery', 'handlebars', 'app/image_preloader'], function($, Handlebars, 
         });
 
         app.$preview.show();
+    }
+
+    /**
+     */
+    function previewNext() {
+        var app = this,
+            $btn = app.$previewNext,
+            $image = app.$selectedImage.nextAll('.image').eq(0);
+
+        if($btn.hasClass('preview__arrow_disabled')) {
+            return;
+        }
+
+        selectImage(app, $image);
+    }
+
+    /**
+     */
+    function previewPrev() {
+        var app = this,
+            $btn = app.$previewPrev,
+            $image = app.$selectedImage.prevAll('.image').eq(0);
+
+        if($btn.hasClass('preview__arrow_disabled')) {
+            return;
+        }
+
+        selectImage(app, $image);
+    }
+
+    /**
+     */
+    function previewClose() {
+        var app = this;
+
+        app.$preview.hide();
+        app.$selectedImage.removeClass('image_selected');
+        app.$selectedImage = null;
     }
 
     /**
@@ -245,7 +299,7 @@ define(['jquery', 'handlebars', 'app/image_preloader'], function($, Handlebars, 
                 w = Math.ceil(scale * originalW);
 
             // resize image
-            $image.find('img')
+            $image.find('.image__img')
                 .css('height', h + 'px')
                 .css('width', w + 'px')
                 .css('margin-left', 0);
@@ -274,7 +328,7 @@ define(['jquery', 'handlebars', 'app/image_preloader'], function($, Handlebars, 
                             iW = $i.css('width').replace(/[^-\d\.]/g, '');
 
                         // отцентрируем картинку
-                        $('img', $i).css('margin-left', -Math.floor(imageOverW / 2) + 'px');
+                        $('.image__img', $i).css('margin-left', -Math.floor(imageOverW / 2) + 'px');
 
                         if(overW > imageOverW) {
                             $i.css('width', iW - imageOverW + 'px');

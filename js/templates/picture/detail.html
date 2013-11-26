@@ -1,0 +1,34 @@
+<div class="preview__slider">
+    <a class="preview__prev" title="Предыдущее изображение">←</a>
+    <a class="preview__next" title="Следующее изображение">→</a>
+    <img src="<%= img.L.href %>" width="<%= img.L.width %>" height="<%= img.L.height %>" alt="<%= title %>">
+</div>
+<div class="preview__info">
+    <h3 class="preview__title"><%= title %></h3>
+    <ul class="preview__props">
+        <li class="preview__prop">
+            Автор: <a class="preview__author" href="<%= author.url %>" title="Перейти на страницу автора"><%= author.name %></a>
+        </li>
+        <li class="preview__prop">
+            Загружено: <%= pubDate %>
+        </li>
+        <% if (img) { %>
+            <li class="preview__prop">
+                Открыть в разрешении<br>
+                <select class="preview__sizes">
+                <% for (var size in img) { %>
+                    <option value="<%= size %>" <% if (size === 'L') { %>selected<% } %>>
+                        <% if (size === 'orig') { %>
+                            Оригинал (<%= img[size].width %>&times;<%= img[size].height %>)
+                        <% } else { %>
+                            <%= img[size].width %>&times;<%= img[size].height %>
+                        <% } %>
+                    </option>
+                <% } %>
+                <select>
+                <i class="preview__new-window"></i>
+            </li>
+        <% } %>
+    </ul>
+</div>
+<a class="preview__close" title="Закрыть">&times;</a>

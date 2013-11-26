@@ -48,8 +48,9 @@ define([
         close : function() {
             this.model.trigger('preview:close');
 
-            // Удаляем обработчик
+            // Удаляем обработчики
             $(document).off('keydown', this.keyPress);
+            App.vent.off('picture:select', this.close);
 
             // Сворачиваем и удаляем превью
             var self = this;

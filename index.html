@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css"/>
+    <script data-main="js/main.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.9/require.min.js"></script>
+</head>
+<body>
+
+    <h1>Работа с API, верстка и анимации</h1>
+
+    <div class="switcher">
+        <span id="switch-top" class="pseudo-link active">Популярные</span> /
+        <span id="switch-day" class="pseudo-link">фото дня</span> /
+        <span id="switch-interesting" class="pseudo-link">Новые интересные фотографии</span>
+    </div>
+
+    <div class="images clearfix" id="images"></div>
+    <div class="images-more" id="images-more">Больше изображений</div>
+
+    <script id="image-template" type="text/x-handlebars-template">
+        <div class="image">
+            <div class="image__img-wrapper">
+                <img class="image__img" src="{{ image.img.M.href }}" alt="{{ image.title }}"/>
+            </div>
+
+            <div class="image__info">
+                <div class="image__title">{{ image.title }}</div>
+                <div class="image__author">{{ image.authors.0.name }}</div>
+            </div>
+        </div>
+    </script>
+
+    <div id="preview" class="preview">
+        <div class="preview__arrow preview__arrow_prev">&larr;</div>
+        <div class="preview__arrow preview__arrow_next">&rarr;</div>
+        <div class="preview__close">×</div>
+        <div class="preview__img">
+            <img src="" alt=""/>
+        </div>
+    </div>
+</body>
+</html>

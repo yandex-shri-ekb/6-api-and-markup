@@ -1,0 +1,195 @@
+.clearfix:before, .clearfix:after
+{
+    content: "";
+    display: table;
+}
+
+.clearfix:after
+{
+    clear: both;
+}
+
+.clearfix
+{
+    *zoom: 1;
+}
+
+.pseudo-link
+{
+    border-bottom: 1px dotted;
+    color: #0d44a0;
+    cursor: pointer;
+}
+
+.pseudo-link.active
+{
+    color: #f00;
+}
+
+.pseudo-link:hover
+{
+    color: #f00;
+}
+
+.switcher
+{
+    margin: 0 0 20px;
+}
+
+.images
+{
+
+}
+
+.image
+{
+    background: #EBEBEB;
+    float: left;
+    position: relative;
+    margin: 0 0 10px 10px;
+}
+
+.image:hover .image__info,
+.image_selected .image__info
+{
+    display: block;
+}
+
+.image:hover .image__img,
+.image_selected .image__img
+{
+    z-index: 2;
+    position: relative;
+}
+
+.image_first
+{
+    margin-left: 0;
+}
+
+.image_selected .image__title,
+.image_selected .image__author {
+    display: none;
+}
+
+.image__img-wrapper
+{
+    height: 150px;
+    overflow: hidden;
+}
+
+.image__img
+{
+    display: block;
+}
+
+.image__info
+{
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: -8px -8px 0;
+    padding: 158px 8px 8px;
+    display: none;
+    background-color: #2B2B2B;
+    z-index: 1;
+}
+
+.image__title
+{
+    color: #FFF;
+}
+
+.image__author
+{
+    color: #FFF;
+}
+
+.preview
+{
+    background: #252424;
+    display: none;
+    margin: 0 0 10px;
+    padding: 20px;
+    position: relative;
+    clear: both;
+}
+
+.preview__img
+{
+    margin: 0 auto;
+}
+
+.preview__arrow
+{
+    color: #FFF;
+    cursor: pointer;
+    font: 40px/45px Arial;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    margin: auto 0;
+    text-align: center;
+    width: 50px;
+}
+
+.preview__arrow_disabled
+{
+    display: none;
+}
+
+.preview__arrow:hover
+{
+    color: #A3A3A3;
+}
+
+.preview__arrow_prev
+{
+    left: 15px;
+}
+
+.preview__arrow_next
+{
+    right: 15px;
+}
+
+.preview__close
+{
+    color: #FFF;
+    cursor: pointer;
+    font: 40px/50px Arial;
+    height: 50px;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 5px;
+    width: 50px;
+}
+
+.preview__close:hover
+{
+    color: #A3A3A3;
+}
+
+.images-more
+{
+    border: 1px dashed #0D44A0;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.images-more:hover
+{
+    border: 1px dashed #F00;
+}
+
+.images-more_disabled,
+.images-more_disabled:hover
+{
+    border: 1px dashed #A3A3A3;
+    cursor: default;
+}

@@ -43,15 +43,12 @@ define(['jquery', 'handlebars', 'app/image_preloader'], function($, Handlebars, 
             switch(event.which) {
                 case 39: // right arrow
                     $.proxy(previewNext, app)();
-                    event.preventDefault();
                     break;
                 case 37: // left arrow
                     $.proxy(previewPrev, app)();
-                    event.preventDefault();
                     break;
                 case 27: // esc
                     $.proxy(previewClose, app)();
-                    event.preventDefault();
                     break;
             }
         });

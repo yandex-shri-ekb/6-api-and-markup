@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Работа с API, верстка и анимации | 6-api-and-markup | Кузвесов Артём</title>
+        <link rel="stylesheet" href="css/style.css">
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.9/require.min.js" data-main="js/main.js"></script>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <div id="loading">
+            <img src="images/loading.gif" width="64px" height="64px" alt="Загрузка">
+            <div class="textload">Идёт загрузка...</div>
+        </div>
+        <header>
+            <section>
+                <h1><span>Р</span>абота с API, верстка и анимации</h1>
+                <ul class="nav">
+                    <li>
+                        <a id="top" class="active" href="#">Популярные фотографии</a>
+                    </li>
+                    <li>
+                        <a id="recent" href="#">Новые интересные фотографии</a>
+                    </li>
+                    <li>
+                        <a id="podhistory" href="#">Фото дня</a>
+                    </li>
+                </ul>
+            </section>
+        </header>
+        <section class="content">
+            <ul class="miniatures"></ul>
+            <div class="more">Больше фотографий...</div>
+        </section>
+    </body>
+</html>

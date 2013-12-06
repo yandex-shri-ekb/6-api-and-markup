@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Популярные фотографии</title>
+    <meta name="author" content="Александр Сердитов">
+    <script src="js/vendors/jquery-1.10.2.js"></script>
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="b-page">
+
+    <div class="b-page-layout">
+        <div class="b-page-layout__pillar b-page-layout__pillar-center">
+            <h1 class="b-title">Популярные фотографии</h1>
+
+            <div class="b-images-list">
+
+                <div class="b-loading">
+                    Пожалуйста, подождите, идет загрузка...
+                </div>
+
+                <div class="slider b-slider hide">
+
+                    <div class="b-navigation__btn-close b-btn-close"></div>
+
+                    <div class="b-layout b-layout-left b-layout_width_2of3">
+                        <div class="b-slider__image_placeholder">
+                            <div class="b-slider__image_placeholder__inner"></div>
+                            <div class="b-helper"></div>
+                        </div>
+                        <div class="b-slider__navigation">
+                            <div class="b-navigation__btn-arrow b-navigation__btn-arrow-left b-btn-prev"></div>
+                            <div class="b-navigation__btn-arrow b-navigation__btn-arrow-right b-btn-next"></div>
+                        </div>
+                    </div>
+
+                    <div class="b-slider__info b-layout-right b-layout_width_1of3">
+                        <div class="b-slider__info_wrap">
+                            <div class="b-slider__info__title"></div>
+                            <div class="b-slider__info__author"></div>
+                            <div class="b-slider__info__created"></div>
+                        </div>
+                        <div class="b-helper"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>

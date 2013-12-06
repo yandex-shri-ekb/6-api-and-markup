@@ -1,0 +1,190 @@
+.b-page
+  font-family "Helvetica Neue", sans-serif
+  background #F2F2F2 url(../img/noise.png)
+  margin 0
+
+  &-layout
+
+    &__pillar
+      width 1000px
+      min-height 768px
+      margin 60px 0
+
+      &-center
+        margin-left auto
+        margin-right auto
+
+.b-loading
+  padding 10px 10px 0
+
+.b-title
+  color #555
+
+.b-images-list
+  padding 0 0 10px
+  background rgba(#fff, .3)
+  border-radius 4px
+
+.b-image-row
+  height 150px
+  padding 10px 0 0
+  position relative
+
+.b-image-block
+  position relative
+  display inline-block
+  margin 0 0 0 10px
+
+  &:hover &__image_wrap
+    position relative
+    z-index 20
+
+  &:hover &__hint
+    display block
+
+  &__image
+    border-radius 4px
+    box-shadow 1px 1px 3px rgba(0, 0, 0, 0.45)
+    color #353535
+    font-size small
+    transition box-shadow 0.2s
+
+    &:hover
+      cursor pointer
+
+  &__hint
+    font-size 14px
+    border-radius 4px
+    z-index 10
+    display none
+    position absolute
+    top -10px
+    left -10px
+    right -10px
+    bottom -66px
+
+  .b-hint
+    color #fff
+    background #000
+    background rgba(#000, .9)
+
+    &__text
+      position absolute
+      left 10px
+      right 10px
+      text-align center
+      height 16px
+      overflow hidden
+
+    &__title
+      bottom 45px
+      font-weight 700
+
+    &__author
+      bottom 28px
+
+    &__created
+      font-size 12px
+      bottom 5px
+
+.b-slider
+  color #fff
+  background #222
+  position relative
+  width 980px
+  margin 10px auto 0
+  height 467px
+  border-radius 4px
+  -webkit-touch-callout none
+  -webkit-user-select none
+  -khtml-user-select none
+  -moz-user-select none
+  -ms-user-select none
+  user-select none
+
+  &__image_placeholder
+    height 100%
+    text-align center
+    position relative
+
+    &__inner
+      display inline-block
+      vertical-align middle
+
+    &_b-slider__image
+      border-radius 4px
+
+  &__info
+    height 100%
+    text-align center
+
+    &_wrap
+      max-width 280px
+      display inline-block
+      vertical-align middle
+      color #fff
+
+    &__title
+      font-size 18px
+      font-weight 700
+      overflow hidden
+
+.b-navigation
+  position absolute
+  height 100%
+  top 0
+  left 0
+  right 0
+
+  &__btn-arrow
+    position absolute
+    top 0
+    bottom 0
+    margin auto
+    width 34px
+    height 80px
+    cursor pointer
+
+  &__btn-arrow-left
+    left 10px
+    background url(../img/arrow_left.png) no-repeat
+
+  &__btn-arrow-right
+    right 10px
+    background url(../img/arrow_right.png) no-repeat
+
+  &__btn-close
+    position absolute
+    top 20px
+    right 20px
+
+.b-btn-close
+  background url(../img/close.png) no-repeat
+  width 20px
+  height 20px
+  cursor pointer
+
+.b-layout
+  height 100%
+  position relative
+
+  &_width_1of3
+    width 33%
+
+  &_width_2of3
+    width 66%
+
+  &-right
+    float right
+
+  &-left
+    float left
+
+.hide
+  display none
+
+.b-helper
+  display inline-block
+  vertical-align middle
+  height 100%
+  width 0

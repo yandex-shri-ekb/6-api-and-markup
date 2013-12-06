@@ -5,7 +5,7 @@ var App = (function(){
     function App (){
 
         // адрес запроса URL с картинками
-        this.urlApi = 'http://api-fotki.yandex.ru/api/top/?format=json&callback=?';
+        this.urlApi = 'https://api-fotki.yandex.ru/api/top/?format=json&callback=?';
 
         // хранение элементов DOM
         this.view = {

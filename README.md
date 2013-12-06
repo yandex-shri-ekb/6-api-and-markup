@@ -6,7 +6,7 @@
 *
 
 Демо:
-https://raw.github.com/dguard/4-layout/master/index.html
+https://rawgithub.com/dguard/6-api-and-markup/master/index.html
 
 
 # Работа с API, верстка и анимации

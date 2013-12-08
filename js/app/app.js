@@ -59,11 +59,12 @@ define(['jquery',
 		var app = this;
 
 		$.ajax({
-			url: '//api-fotki.yandex.ru/api/' + app.photoCategory +'/',
+			url: 'http://api-fotki.yandex.ru/api/' + app.photoCategory +'/',
 			type: 'GET',
+			dataType: 'jsonp',
 			data: {
 		            format : 'json',
-		            limit : app.photolimit
+		            limit : app.photoLimit
 		          },
 			dataType: 'jsonp',
 			beforeSend: function () {
@@ -80,7 +81,7 @@ define(['jquery',
 				    countMiniature = app.dataJson.entries.length;
 
 				$miniatures.append(html);
-				if ((photolimit > countMiniature) || (photolimit === 100)) {
+				if ((app.photolimit > countMiniature) || (app.photolimit === 100)) {
 					$('.more').hide();
 				};
 				$('#loading').css('display', 'none');

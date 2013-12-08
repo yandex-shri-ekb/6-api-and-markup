@@ -11,8 +11,8 @@ define(['jquery',
 	 	'app/templateLoader'], function($, Handlebars, TemplateLoader) {
 
 	/** @define {object} */
-	var $preview = $('li.preview'); // Элемент preview
-	$('li.preview').remove();
+	var $preview = $('.preview'); // Элемент preview
+	$preview.remove();
 	/** @define {object} */
 	var $miniatures = $('.miniatures');
 
@@ -97,7 +97,7 @@ define(['jquery',
 		var element = event.target, // текущий элемент в jQuery
 			app     = this;
 
-        $('ul.nav li a.active').removeClass('active');
+        $('a.active').removeClass('active');
 		$(element).addClass('active');
 
 		app.photoCategory = $(element).attr('id');
@@ -134,13 +134,12 @@ define(['jquery',
 	 * Рендеринг превью
 	 */
 	App.prototype.renderPreview = function(selected) {
-		//console.log(selected);
 		var app               = this,
 			$idPhoto          = selected.attr('id'),
 			title             = app.dataJson.entries[$idPhoto].title,
-			$countMiniatures = $('.miniatures li.miniature').length - 1;
+			$countMiniatures  = $('.miniatures li.miniature').length - 1;
 
-		if ($('li.selected')) $('li').removeClass('selected');
+		if ($('.selected')) $('li').removeClass('selected');
 		if ($preview) $preview.remove();
 
 		selected.addClass('selected');
@@ -151,33 +150,35 @@ define(['jquery',
 			selected.prevAll('.first:first').before($preview);
 		}
 
-		if ($('li.preview ul li')) $('li.preview ul li').remove();
+		if ($('.preview ul li')) $('.preview ul li').remove();
 
-		$('li.preview .prev').show();
-		$('li.preview .next').show();
+		$('.prev').show();
+		$('.next').show();
 
 		if ($idPhoto === '0') {
-			$('li.preview .prev').hide();
+			$('.prev').hide();
+			prev = true;
 		}
 		if ($idPhoto === String($countMiniatures)) {
-			$('li.preview .next').hide();
+			$('.next').hide();
+			next = true;
 		}
 
 		if ($idPhoto) {
-			$('li.preview img').attr({src: app.dataJson.entries[$idPhoto].img.L.href, alt: title});
-			$('li.preview h2').text(title);
-			$('li.preview .author a').attr('href', 'http://fotki.yandex.ru/users/' + app.dataJson.entries[$idPhoto].author).text(app.dataJson.entries[$idPhoto].author);
+			$('.preview img').attr({src: app.dataJson.entries[$idPhoto].img.L.href, alt: title});
+			$('.preview h2').text(title);
+			$('.preview .author a').attr('href', 'http://fotki.yandex.ru/users/' + app.dataJson.entries[$idPhoto].author).text(app.dataJson.entries[$idPhoto].author);
 			if (app.dataJson.entries[$idPhoto].img.L.href) {
-				$('li.preview ul').append('<li><a href="' + app.dataJson.entries[$idPhoto].img.L.href + '" alt="' + title + '">' + app.dataJson.entries[$idPhoto].img.L.width + 'x' + app.dataJson.entries[$idPhoto].img.L.height + '</a></li>');
+				$('.preview ul').append('<li><a href="' + app.dataJson.entries[$idPhoto].img.L.href + '" alt="' + title + '">' + app.dataJson.entries[$idPhoto].img.L.width + 'x' + app.dataJson.entries[$idPhoto].img.L.height + '</a></li>');
 			}
 			if (app.dataJson.entries[$idPhoto].img.XL.href) {
-				$('li.preview ul').append('<li><a href="' + app.dataJson.entries[$idPhoto].img.XL.href + '" alt="' + title + '">' + app.dataJson.entries[$idPhoto].img.XL.width + 'x' + app.dataJson.entries[$idPhoto].img.XL.height + '</a></li>');
+				$('.preview ul').append('<li><a href="' + app.dataJson.entries[$idPhoto].img.XL.href + '" alt="' + title + '">' + app.dataJson.entries[$idPhoto].img.XL.width + 'x' + app.dataJson.entries[$idPhoto].img.XL.height + '</a></li>');
 			}
 			if (app.dataJson.entries[$idPhoto].img.XXL.href) {
-				$('li.preview ul').append('<li><a href="' + app.dataJson.entries[$idPhoto].img.XXL.href + '" alt="' + title + '">' + app.dataJson.entries[$idPhoto].img.XXL.width + 'x' + app.dataJson.entries[$idPhoto].img.XXL.height + '</a></li>');
+				$('.preview ul').append('<li><a href="' + app.dataJson.entries[$idPhoto].img.XXL.href + '" alt="' + title + '">' + app.dataJson.entries[$idPhoto].img.XXL.width + 'x' + app.dataJson.entries[$idPhoto].img.XXL.height + '</a></li>');
 			}
 			if (app.dataJson.entries[$idPhoto].img.XXXL.href) {
-				$('li.preview ul').append('<li><a href="' + app.dataJson.entries[$idPhoto].img.XXXL.href + '" alt="' + title + '">' + app.dataJson.entries[$idPhoto].img.XXXL.width + 'x' + app.dataJson.entries[$idPhoto].img.XXXL.height + '</a></li>');
+				$('.preview ul').append('<li><a href="' + app.dataJson.entries[$idPhoto].img.XXXL.href + '" alt="' + title + '">' + app.dataJson.entries[$idPhoto].img.XXXL.width + 'x' + app.dataJson.entries[$idPhoto].img.XXXL.height + '</a></li>');
 			}
 		}
 
@@ -191,15 +192,35 @@ define(['jquery',
 
 		/** Обработка клика на кнопку следующей фотография */
 		$preview.on('click', '.next', $.proxy(this.nextPreview, this));
+
+	
+		document.onkeydown = NavigateThrough;
+		function NavigateThrough (event) {
+			switch (event.keyCode ? event.keyCode : event.which ? event.which : null) {
+				case 0x25: // стрелка влево
+					if ($('.prev').css('display') !== 'none') {
+						app.prevPreview();
+					};
+					break;
+				case 0x27: // стрелка впрво
+					if ($('.next').css('display') !== 'none') {
+						app.nextPreview();
+					};
+					break;
+	       		case 0x1B: // esc
+	       			app.closePreview();
+            		break;
+			}
+		}
     }
 
     /**
 	 * События, которые происходят при клике на кнопку закрыть
 	 */
 	App.prototype.closePreview = function() {
-		$('li.preview').slideUp(800);
-		setTimeout(function() { $('li.preview').remove() }, 800);
-		$('li.selected').removeClass('selected')
+		$('.preview').slideUp(800);
+		setTimeout(function() { $('.preview').remove() }, 800);
+		$('.selected').removeClass('selected')
 	}
 
 	/**
@@ -227,34 +248,66 @@ define(['jquery',
 	 * Упорядочивание изображений
 	 */
 	function tidyImages() {
-		var $widthBlock     = $miniatures.width(), // ширина области с миниатюрами
-			withLine        = 0, // ширина получаемой строки миниатюр
-			first           = true, // текущий элемент является первым в строке
-			$countMiniatures = $('.miniatures li').length - 1; // количество миниатюр
-        $('.miniatures li.miniature').each(function(index) {
+		var $widthBlock = $miniatures.width(), // ширина области с миниатюрами
+			withLine    = 0, // ширина получаемой строки миниатюр
+			first       = true, // текущий элемент является первым в строке
+			$countMin   = $('.miniature').length - 1, // количество миниатюр
+			countLine   = '', // количество миниатюр в строке
+			lineMin     = [], // массив миниатюр в строке
+			$widthImage = '', // ширина миниатюры
+			difference  = '', // разница между шириной строки и шириной всех выбранных минитаюр
+			newWith     = ''; // знаение ширины миниатюры, на которое надо изменить
+
+			/**
+			 * @constructor
+			 * @param  {object} element миниатюра
+			 * @param  {number} width   ширина миниатюры
+			 */
+			function minimage(image, widthImg){
+				this.image    = image;
+				this.widthImg = Number(widthImg);
+			};
+
+        $('.miniature').each(function(index, element) {
         	$(this).removeClass('first');
         	$(this).removeClass('last');
 
-        	var $widthImage = $('img', this).width(); // ширина миниатюры
+        	if(index === 0) {
+        		$(this).addClass('firsted');
+        	}
+
+        	$widthImage = $('img', this).width(); // ширина миниатюры
 
         	withLine += $widthImage + 20;
 
-        	var difference = $widthBlock - withLine;
-
-        	if (index === $countMiniatures) {
-        		$(this).addClass('last');
-        	};
-
-        	if (difference < 0) {
-        		$(this).prev().addClass('last');
-        		first = true;
-        		withLine = $widthImage + 20;
-        	};
+        	difference = $widthBlock - withLine;
 
         	if (first) {
         		$(this).addClass('first');
         		first = false;
         	};
+
+        	lineMin.push(new minimage(element, $widthImage));
+
+        	if (difference < 0) {
+        		countLine  = lineMin.length;
+        		difference = (-1 * difference) + 40;
+      			newWith    = Math.ceil(difference / countLine);        		
+
+        		lineMin.forEach(function(el) {
+					$(el.image).css('width', el.widthImg - newWith + 'px');
+				});
+
+        		$(this).addClass('last').css('float', 'right');
+        		first = true;
+        		withLine = 0;
+        		lineMin = [];
+        	};
+
+        	if (index === $countMin) {
+        		$(this).addClass('last').addClass('lasted').css('float', 'none');
+        	};
+
 		});
     }
 

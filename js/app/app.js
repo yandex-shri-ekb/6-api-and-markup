@@ -81,7 +81,7 @@ define(['jquery',
 				    countMiniature = app.dataJson.entries.length;
 
 				$miniatures.append(html);
-				if ((app.photolimit > countMiniature) || (app.photolimit === 100)) {
+				if ((app.photoLimit > countMiniature) || (app.photoLimit === 100)) {
 					$('.more').hide();
 				};
 				$('#loading').css('display', 'none');

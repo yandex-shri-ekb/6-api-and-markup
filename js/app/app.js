@@ -59,7 +59,7 @@ define(['jquery',
 		var app = this;
 
 		$.ajax({
-			url: 'http://api-fotki.yandex.ru/api/' + photoCategory +'/',
+			url: '//api-fotki.yandex.ru/api/' + photoCategory +'/',
 			type: 'GET',
 			data: {
 		            format : 'json',

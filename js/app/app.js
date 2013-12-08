@@ -48,22 +48,22 @@ define(['jquery',
      * Функция которая должна быть вызвана при запуске приложения
      */
     App.prototype.first = function() {
-		this.ajaxCatalog(this.photoCategory, this.photoLimit);
+		this.ajaxCatalog();
 	};
 
     /**
      * Загружаем фотографии через API, отрисовываем их и упорядочиаваем
      * @param  {[string]} photoCategory Категорию фотографий которую нужно загрузить 
      */
-	App.prototype.ajaxCatalog = function(photoCategory, photolimit) {
+	App.prototype.ajaxCatalog = function() {
 		var app = this;
 
 		$.ajax({
-			url: '//api-fotki.yandex.ru/api/' + photoCategory +'/',
+			url: '//api-fotki.yandex.ru/api/' + app.photoCategory +'/',
 			type: 'GET',
 			data: {
 		            format : 'json',
-		            limit : photolimit
+		            limit : app.photolimit
 		          },
 			dataType: 'jsonp',
 			beforeSend: function () {

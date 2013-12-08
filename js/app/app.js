@@ -269,8 +269,7 @@ define(['jquery',
 			};
 
         $('.miniature').each(function(index, element) {
-        	$(this).removeClass('first');
-        	$(this).removeClass('last');
+        	$(this).removeClass('first').removeClass('last').css('float', 'none');
 
         	if(index === 0) {
         		$(this).addClass('firsted');
@@ -292,13 +291,13 @@ define(['jquery',
         	if (difference < 0) {
         		countLine  = lineMin.length;
         		difference = (-1 * difference) + 40;
-      			newWith    = Math.ceil(difference / countLine);        		
+    			newWith = Math.ceil(difference / countLine);
 
         		lineMin.forEach(function(el) {
 					$(el.image).css('width', el.widthImg - newWith + 'px');
 				});
 
-        		$(this).addClass('last').css('float', 'right');
+        		$(this).addClass('last').css({float: 'right', width: $widthImage - newWith - (countLine / 2) + 'px'});
         		first = true;
         		withLine = 0;
         		lineMin = [];

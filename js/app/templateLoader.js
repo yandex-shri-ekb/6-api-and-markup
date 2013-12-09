@@ -8,13 +8,6 @@
  */
 define(['jquery'], function($) {
 	$.ajax({
-        url: 'js/templates/preview.html',
-        dataType: 'text',
-        success: function (answer) {
-            $('section.content').after(answer);
-        }
-    });
-	$.ajax({
         url: 'js/templates/miniature.html',
         dataType: 'text',
         success: function (answer) {

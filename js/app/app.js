@@ -56,13 +56,11 @@ define(['jquery',
      * @param  {[string]} photoCategory Категорию фотографий которую нужно загрузить 
      */
 	App.prototype.ajaxCatalog = function() {
-		var app = this,
-			photoCategory = app.photoCategory;
+		var app = this;
 
 		$.ajax({
-			url: 'http://api-fotki.yandex.ru/api/' + photoCategory +'/',
+			url: '//api-fotki.yandex.ru/api/' + app.photoCategory +'/',
 			type: 'GET',
-			dataType: 'jsonp',
 			data: {
 		            format : 'json',
 		            limit : app.photoLimit

@@ -163,20 +163,20 @@ define(['jquery',
         }
 
         if (idPhoto) {
-            $('.preview img').attr({src: app.dataJson.entries[idPhoto].img.L.href, alt: title});
-            $('.preview h2').text(title);
-            $('.preview .author a').attr('href', 'http://fotki.yandex.ru/users/' + app.dataJson.entries[idPhoto].author).text(app.dataJson.entries[idPhoto].author);
+            $preview.find('img').attr({src: app.dataJson.entries[idPhoto].img.L.href, alt: title});
+            $preview.find('h2').text(title);
+            $preview.find('.author a').attr('href', 'http://fotki.yandex.ru/users/' + app.dataJson.entries[idPhoto].author).text(app.dataJson.entries[idPhoto].author);
             if (app.dataJson.entries[idPhoto].img.L.href) {
-                $('.preview ul').append('<li><a href="' + app.dataJson.entries[idPhoto].img.L.href + '" alt="' + title + '">' + app.dataJson.entries[idPhoto].img.L.width + 'x' + app.dataJson.entries[idPhoto].img.L.height + '</a></li>');
+                $preview.find('ul').append('<li><a href="' + app.dataJson.entries[idPhoto].img.L.href + '" alt="' + title + '">' + app.dataJson.entries[idPhoto].img.L.width + 'x' + app.dataJson.entries[idPhoto].img.L.height + '</a></li>');
             }
             if (app.dataJson.entries[idPhoto].img.XL.href) {
-                $('.preview ul').append('<li><a href="' + app.dataJson.entries[idPhoto].img.XL.href + '" alt="' + title + '">' + app.dataJson.entries[idPhoto].img.XL.width + 'x' + app.dataJson.entries[idPhoto].img.XL.height + '</a></li>');
+                $preview.find('ul').append('<li><a href="' + app.dataJson.entries[idPhoto].img.XL.href + '" alt="' + title + '">' + app.dataJson.entries[idPhoto].img.XL.width + 'x' + app.dataJson.entries[idPhoto].img.XL.height + '</a></li>');
             }
             if (app.dataJson.entries[idPhoto].img.XXL.href) {
-                $('.preview ul').append('<li><a href="' + app.dataJson.entries[idPhoto].img.XXL.href + '" alt="' + title + '">' + app.dataJson.entries[idPhoto].img.XXL.width + 'x' + app.dataJson.entries[idPhoto].img.XXL.height + '</a></li>');
+                $preview.find('ul').append('<li><a href="' + app.dataJson.entries[idPhoto].img.XXL.href + '" alt="' + title + '">' + app.dataJson.entries[idPhoto].img.XXL.width + 'x' + app.dataJson.entries[idPhoto].img.XXL.height + '</a></li>');
             }
             if (app.dataJson.entries[idPhoto].img.XXXL.href) {
-                $('.preview ul').append('<li><a href="' + app.dataJson.entries[idPhoto].img.XXXL.href + '" alt="' + title + '">' + app.dataJson.entries[idPhoto].img.XXXL.width + 'x' + app.dataJson.entries[idPhoto].img.XXXL.height + '</a></li>');
+                $preview.find('ul').append('<li><a href="' + app.dataJson.entries[idPhoto].img.XXXL.href + '" alt="' + title + '">' + app.dataJson.entries[idPhoto].img.XXXL.width + 'x' + app.dataJson.entries[idPhoto].img.XXXL.height + '</a></li>');
             }
         }
 
@@ -296,7 +296,7 @@ define(['jquery',
                     $(el.image).css('width', el.widthImg - newWith + 'px');
                 });
 
-                $(this).addClass('last').css({float: 'right', width: $widthImage - newWith - (countLine / 2) + 'px'});
+                $(this).addClass('last').css({float: 'right', width: $widthImage - newWith - countLine + 'px'});
                 first = true;
                 withLine = 0;
                 lineMin = [];

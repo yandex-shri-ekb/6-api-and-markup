@@ -1,5 +1,7 @@
 # Работа с API, верстка и анимации
 
+[https://rawgithub.com/ArtKuz/6-api-and-markup/master/index.html](https://rawgithub.com/ArtKuz/6-api-and-markup/master/index.html)
+
 Ваша задача — реализовать страницу с динамическим отображением результатов запроса к API «популярных фотографий» сервиса Яндекс.Фоткки.
 
 В качестве исходных данных — коллекция популярных фотографий в формате JSON, полученных из API 

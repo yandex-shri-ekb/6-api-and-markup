@@ -1,0 +1,13 @@
+<script id="miniature-template" type="text/x-handlebars-template">
+    {{#each entries}}
+        <li class="miniature" id="{{@index}}">
+            <div class="image">
+                <img src="{{img.M.href}}" alt="{{title}}" style="width: {{newWith img.M.width img.M.height}}px;">
+            </div>
+            <div class="shortDescription">
+                <div class="title">{{title}}</div>
+                <div class="author"><a href="http://fotki.yandex.ru/users/{{author}}">{{author}}</a></div>
+            </div>
+        </li>
+    {{/each}}
+</script>

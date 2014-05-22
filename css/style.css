@@ -1,0 +1,259 @@
+html,
+body,
+h1,
+h2,
+p
+{
+    margin: 0;
+}
+
+ol, ul
+{
+    list-style: none;
+    padding: 0;
+}
+
+a
+{
+    color: #6da3bd;
+}
+
+a:hover
+{
+    color: #4d7285;
+}
+
+body
+{
+    padding: 10px;
+    min-width: 950px;
+    background: #fff;
+    color: #000;
+    text-align: left;
+    font: 400 16px Arial, Helvetica, sans-serif;
+}
+
+header
+{
+    height: 110px;
+    display: block;
+    border-bottom: 4px solid #fc3;
+}
+
+h1
+{
+    padding: 0 0 10px;
+    text-align: center;
+    font: 400 36px Verdana, Helvetica, sans-serif;
+}
+
+h1 span
+{
+    color: #f00;
+}
+
+h2
+{
+    padding: 0 0 10px;
+    font: 700 16px Verdana, Helvetica, sans-serif;
+}
+
+ul.nav li
+{
+    display: inline;
+    margin: 0 10px 0 0;
+}
+
+ul.nav li a.active
+{
+    color: #f00;
+    text-decoration: none;
+}
+
+#loading
+{
+    position: absolute;
+    z-index: 1;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0.9;
+}
+
+#loading img
+{
+    margin: 70px 50%;
+}
+
+#loading .textload
+{
+    left: 30px;
+    position: relative;
+    text-align: center;
+    top: -60px;
+}
+
+section
+{
+    margin: 30px auto;
+    display: block;
+}
+
+header section
+{
+    margin: 0 auto;
+}
+
+.miniatures .miniature
+{
+    display: inline-block;
+    margin: 10px;
+    position: relative;
+    vertical-align: top;
+}
+
+.miniatures .miniature .image
+{
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    height: 150px;
+    z-index: 1;
+    position: relative;
+}
+
+.miniatures .miniature .image img
+{
+    height: 150px;
+}
+
+.miniatures .miniature .shortDescription
+{
+    background: none repeat scroll 0 0 #2B2B2B;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    left: 0;
+    margin: -10px -10px 0;
+    padding: 170px 10px 10px;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    top: 0;
+    z-index: 2;
+    color: #fff;
+    overflow: hidden;
+}
+
+.miniatures .miniature .shortDescription .title
+{
+    font-weight: 700;
+}
+
+.miniatures .miniature:hover .shortDescription,
+.miniatures .miniature.selected .shortDescription
+{
+    display: block;
+}
+
+.miniatures .miniature:hover .image,
+.miniatures .miniature.selected .image
+{
+    z-index: 3;
+}
+
+.miniatures .miniature.selected .title,
+.miniatures .miniature.selected .author
+{
+    display: none;
+}
+
+.preview
+{
+    background: none repeat scroll 0 0 #2b2b2b;
+    width: 100%;
+    position: relative;
+    display: none;
+
+}
+
+.preview .close
+{
+    color: #a7a7a7;
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: 800;
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+
+.preview .close:hover
+{
+    color: #fff;
+}
+
+.preview .slider
+{
+    position: relative;
+    margin: 0 430px 0 10px;
+    padding: 20px 0 10px;
+    text-align: center;
+}
+
+.preview .slider .prev,
+.preview .slider .next
+{
+    color: #a7a7a7;
+    cursor: pointer;
+    font-size: 50px;
+    margin: -40px 0 0;
+    position: absolute;
+    top: 50%;
+    display: none;
+}
+
+.preview .slider .prev
+{
+    left: 0;
+}
+
+.preview .slider .next
+{
+    right: 0;
+}
+
+.preview .slider .prev:hover,
+.preview .slider .next:hover
+{
+    color: #fff;
+}
+
+.preview .description
+{
+    color: #eee;
+    position: absolute;
+    right: 10px;
+    text-align: left;
+    top: 50px;
+    width: 380px;
+}
+
+.preview .description ul
+{
+    margin: 20px 0 0 0;
+}
+
+.more
+{
+    border: 4px solid #fc3;
+    margin: 0 auto;
+    text-align: center;
+    width: 200px;
+    cursor: pointer;
+}
+
+.more:hover
+{
+    background: #fc3;
+}

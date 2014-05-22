@@ -76,7 +76,7 @@ define(['jquery',
 
                 var $source        = $('#miniature-template').html().trim(),
                     template         = Handlebars.compile($source),
-                    html             = template(answer); // собираем миниатюры по шаблону
+                    html             = template(answer), // собираем миниатюры по шаблону
                     countMiniature = app.dataJson.entries.length;
 
                 $miniatures.append(html);
